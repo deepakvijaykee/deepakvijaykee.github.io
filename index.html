@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepak Vijaykeerthy — Research</title>
+  <meta name="description" content="Deepak Vijaykeerthy — Research Engineer at IBM Research. Foundation models, trustworthy AI, table understanding, explainability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2b46;
+      --accent: #1d6fa5;
+      --accent-light: #e8f2fa;
+      --text: #2c3e50;
+      --text-secondary: #5a6c7d;
+      --bg: #ffffff;
+      --light-bg: #f7f9fb;
+      --border: #e2e8f0;
+      --highlight: #f0f7ff;
+      --new-badge: #d4380d;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---- Nav ---- */
+    header {
+      background: var(--primary);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.12);
+    }
+    nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav ul a {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: #fff; text-decoration: none; }
+
+    /* ---- Container ---- */
+    .container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 2rem; }
+
+    /* ---- Hero / About ---- */
+    .hero {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+    }
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    .hero-text h1 {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.15rem;
+    }
+    .hero-text .role {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .hero-text .bio {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .hero-text .bio strong { color: var(--primary); font-weight: 600; }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* ---- News ---- */
+    .news-bar {
+      background: var(--highlight);
+      border: 1px solid #c6ddf0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+    }
+    .news-bar .badge {
+      display: inline-block;
+      background: var(--new-badge);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- Sections ---- */
+    section { margin-bottom: 2.75rem; }
+    section h2 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    /* ---- Research Themes ---- */
+    .themes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .theme-card {
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem 1.25rem;
+    }
+    .theme-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+    .theme-card p {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ---- Featured Pub ---- */
+    .featured {
+      background: var(--highlight);
+      border: 1px solid #c6ddf0;
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .featured .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .featured .feat-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+    .featured .feat-authors {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+    }
+    .featured .feat-venue {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+    .featured .feat-tldr {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .featured .feat-tags {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .featured .feat-tags span {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    /* ---- Pub List ---- */
+    .pub-list { list-style: none; }
+    .pub-list li {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+    .pub-list li:last-child { border-bottom: none; }
+    .pub-year {
+      flex-shrink: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--primary);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      min-width: 42px;
+      text-align: center;
+    }
+    .pub-body { flex: 1; }
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .pub-authors {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .pub-venue {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .all-pubs-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.78rem;
+      color: #aab;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 680px) {
+      .hero { flex-direction: column; align-items: center; text-align: center; }
+      .social-links { justify-content: center; }
+      .themes { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+      .pub-list li { flex-direction: column; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <span class="name">Deepak Vijaykeerthy</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- News -->
+  <div class="news-bar">
+    <span class="badge">New</span>
+    Our paper <strong>"From Cells to Sentences"</strong> on robust table understanding has been accepted at <strong>AISTATS 2026</strong>.
+  </div>
+  <!-- Hero -->
+  <section id="about">
+    <div class="hero">
+      <img class="avatar" src="images/photo.jpeg" alt="Deepak Vijaykeerthy">
+      <div class="hero-text">
+        <h1>Deepak Vijaykeerthy</h1>
+        <p class="role">Research Engineer &middot; IBM Research, India</p>
+        <p class="bio">
+          Most of my recent work has been on table understanding and multimodal LLMs. I've also
+          been working on applying item response theory (IRT) from psychometrics to
+          model evaluation and am now exploring how these ideas can improve sample
+          efficiency in RL post-training for LLMs.
+        </p>
+        <p class="bio" style="margin-top:0.5rem;">
+          Before IBM Research I was at Microsoft Research, working on probabilistic
+          program synthesis. Over the years I've also worked on trustworthy AI: fairness
+          verification, concept-based explainability, and adversarial robustness.
+        </p>
+        <p class="bio" style="margin-top:0.5rem;">
+          Always happy to chat about research, explore opportunities, or potential collaborations.
+        </p>
+        <div class="social-links">
+          <a href="mailto:vdeepak713@outlook.com">Email</a>
+          <a href="https://dblp.org/pid/163/3171.html">DBLP</a>
+          <a href="https://research.ibm.com/people/deepak-vijaykeerthy">IBM Research</a>
+          <a href="https://x.com/dvijaykeerthy">Twitter / X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Themes -->
+  <section id="research">
+    <h2>Research Themes</h2>
+    <div class="themes">
+      <div class="theme-card">
+        <h3>Foundation Models for Structured Data</h3>
+        <p>Tables are a modality, not flat text. We train structure-aware encoders and
+           fuse them with decoder-only LLMs, solving the same alignment and norm mismatch
+           challenges that come up in vision-language models.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Trustworthy AI &amp; Robustness</h3>
+        <p>Fairness verification, concept-based explainability, adversarial robustness.
+           Making sure models do what we think they're doing.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Probabilistic Programming &amp; AutoML</h3>
+        <p>Synthesizing probabilistic programs from data and automating ML pipeline
+           configuration using constrained optimization.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Psychometrics for Evaluation &amp; Post-Training</h3>
+        <p>We've used item response theory to evaluate vision models (10 images can
+           rank 91 models, Kendall 0.85). Now exploring how these ideas can make RL
+           post-training for LLMs more sample-efficient.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <h2>Selected Publications</h2>
+
+    <!-- Featured -->
+    <div class="featured">
+      <div class="label">Featured &middot; AISTATS 2026</div>
+      <div class="feat-title">From Cells to Sentences: An End-to-End Framework for Table Understanding</div>
+      <div class="feat-authors"><strong>Deepak Vijaykeerthy</strong>, Arvind Agarwal</div>
+      <div class="feat-venue">AISTATS 2026 (Poster)</div>
+      <div class="feat-tldr">
+        We treat tables as a modality rather than serialising them into text. A
+        structure-aware encoder is trained on noisy, real-world tables and fused with a
+        frozen decoder-only LLM, similar to how vision encoders are fused in VLMs. To
+        handle the norm mismatch between dense table features and text (the same problem
+        VLMs face), we use adaptor layers, fixed-size trainable slots that compress evidence,
+        and a moment-matching constraint to keep distributions aligned. A mixture of denoisers
+        during the alignment phase acts as a regulariser, teaching the model to filter
+        distractions and preventing drift, so end-to-end tuning stays stable without freezing.
+        Best on 5 of 8 benchmarks without external tools, and under schema corruption our
+        method drops less than 1.5 points while baselines drop 6-22.
+      </div>
+    </div>
+
+    <!-- Selected list -->
+    <ul class="pub-list">
+      <li>
+        <span class="pub-year">2024</span>
+        <div class="pub-body">
+          <div class="pub-title">On Evaluation of Vision Datasets and Models using Human Competency Frameworks</div>
+          <div class="pub-authors">Rahul Ramachandran, Tejal Kulkarni, Charchit Sharma, <strong>Deepak Vijaykeerthy</strong>, Vineeth N. Balasubramanian</div>
+          <div class="pub-venue">arXiv 2024</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2022</span>
+        <div class="pub-body">
+          <div class="pub-title">A Framework for Learning Ante-hoc Explainable Models via Concepts</div>
+          <div class="pub-authors">Anirban Sarkar, <strong>Deepak Vijaykeerthy</strong>, Anindya Sarkar, Vineeth N. Balasubramanian</div>
+          <div class="pub-venue">CVPR 2022</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2020</span>
+        <div class="pub-body">
+          <div class="pub-title">An ADMM Based Framework for AutoML Pipeline Configuration</div>
+          <div class="pub-authors">Sijia Liu, Parikshit Ram, <strong>Deepak Vijaykeerthy</strong>, Djallel Bouneffouf, Gregory Bramble, Horst Samulowitz, Dakuo Wang, Andrew Conn, Alexander G. Gray</div>
+          <div class="pub-venue">AAAI 2020</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2020</span>
+        <div class="pub-body">
+          <div class="pub-title">Verifying Individual Fairness in Machine Learning Models</div>
+          <div class="pub-authors">Philips George John, <strong>Deepak Vijaykeerthy</strong>, Diptikalyan Saha</div>
+          <div class="pub-venue">UAI 2020</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2019</span>
+        <div class="pub-body">
+          <div class="pub-title">Hardening Deep Neural Networks via Adversarial Model Cascades</div>
+          <div class="pub-authors"><strong>Deepak Vijaykeerthy</strong>, Anshuman Suri, Sameep Mehta, Ponnurangam Kumaraguru</div>
+          <div class="pub-venue">IJCNN 2019</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2015</span>
+        <div class="pub-body">
+          <div class="pub-title">Efficient Synthesis of Probabilistic Programs</div>
+          <div class="pub-authors">Aditya V. Nori, Sherjil Ozair, Sriram K. Rajamani, <strong>Deepak Vijaykeerthy</strong></div>
+          <div class="pub-venue">PLDI 2015</div>
+        </div>
+      </li>
+    </ul>
+
+    <a href="publications.html" class="all-pubs-link">View all publications &rarr;</a>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2026 Deepak Vijaykeerthy
+</footer>
+
+</body>
+</html>

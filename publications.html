@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications — Deepak Vijaykeerthy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2b46;
+      --accent: #1d6fa5;
+      --accent-light: #e8f2fa;
+      --text: #2c3e50;
+      --text-secondary: #5a6c7d;
+      --bg: #ffffff;
+      --light-bg: #f7f9fb;
+      --border: #e2e8f0;
+      --highlight: #f0f7ff;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: var(--primary);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.12);
+    }
+    nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .name { font-weight: 700; font-size: 1rem; color: #fff; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav ul a { color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    nav ul a:hover { color: #fff; text-decoration: none; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Year group */
+    .year-group { margin-bottom: 2rem; }
+    .year-label {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .pub-list { list-style: none; }
+    .pub-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .pub-list li:last-child { border-bottom: none; }
+
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .pub-authors {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .pub-venue {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .venue-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.03em;
+    }
+    .venue-badge.preprint {
+      background: var(--text-secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.78rem;
+      color: #aab;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 680px) {
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="name" style="text-decoration:none;">Deepak Vijaykeerthy</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="publications.html">All Papers</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Publications</h1>
+  <p class="subtitle">
+    Full list of publications. See also:
+    <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a> &middot;
+    <a href="https://dblp.org/pid/163/3171.html">DBLP</a>
+  </p>
+
+  <!-- 2026 -->
+  <div class="year-group">
+    <div class="year-label">2026</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">From Cells to Sentences: An End-to-End Framework for Table Understanding <span class="venue-badge">AISTATS</span></div>
+        <div class="pub-authors"><strong>Deepak Vijaykeerthy</strong>, Arvind Agarwal</div>
+        <div class="pub-venue">AISTATS 2026 (Poster)</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2024 -->
+  <div class="year-group">
+    <div class="year-label">2024</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">On Evaluation of Vision Datasets and Models using Human Competency Frameworks <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Rahul Ramachandran, Tejal Kulkarni, Charchit Sharma, <strong>Deepak Vijaykeerthy</strong>, Vineeth N. Balasubramanian</div>
+        <div class="pub-venue">arXiv:2409.04041</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2022 -->
+  <div class="year-group">
+    <div class="year-label">2022</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">A Framework for Learning Ante-hoc Explainable Models via Concepts <span class="venue-badge">CVPR</span></div>
+        <div class="pub-authors">Anirban Sarkar, <strong>Deepak Vijaykeerthy</strong>, Anindya Sarkar, Vineeth N. Balasubramanian</div>
+        <div class="pub-venue">CVPR 2022</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2021 -->
+  <div class="year-group">
+    <div class="year-label">2021</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">Inducing Semantic Grouping of Latent Concepts for Explanations: An Ante-Hoc Approach <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Anirban Sarkar, <strong>Deepak Vijaykeerthy</strong>, Anindya Sarkar, Vineeth N. Balasubramanian</div>
+        <div class="pub-venue">arXiv:2108.11761</div>
+      </li>
+      <li>
+        <div class="pub-title">Automated Testing of AI Models <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Swagatam Haldar, <strong>Deepak Vijaykeerthy</strong>, Diptikalyan Saha</div>
+        <div class="pub-venue">arXiv:2110.03320</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2020 -->
+  <div class="year-group">
+    <div class="year-label">2020</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">An ADMM Based Framework for AutoML Pipeline Configuration <span class="venue-badge">AAAI</span></div>
+        <div class="pub-authors">Sijia Liu, Parikshit Ram, <strong>Deepak Vijaykeerthy</strong>, Djallel Bouneffouf, Gregory Bramble, Horst Samulowitz, Dakuo Wang, Andrew Conn, Alexander G. Gray</div>
+        <div class="pub-venue">AAAI 2020</div>
+      </li>
+      <li>
+        <div class="pub-title">Verifying Individual Fairness in Machine Learning Models <span class="venue-badge">UAI</span></div>
+        <div class="pub-authors">Philips George John, <strong>Deepak Vijaykeerthy</strong>, Diptikalyan Saha</div>
+        <div class="pub-venue">UAI 2020</div>
+      </li>
+      <li>
+        <div class="pub-title">Solving Constrained CASH Problems with ADMM <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Parikshit Ram, Sijia Liu, <strong>Deepak Vijaykeerthy</strong>, Dakuo Wang, Djallel Bouneffouf, Gregory Bramble, Horst Samulowitz, Alexander G. Gray</div>
+        <div class="pub-venue">arXiv:2006.09635</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2019 -->
+  <div class="year-group">
+    <div class="year-label">2019</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">Hardening Deep Neural Networks via Adversarial Model Cascades <span class="venue-badge">IJCNN</span></div>
+        <div class="pub-authors"><strong>Deepak Vijaykeerthy</strong>, Anshuman Suri, Sameep Mehta, Ponnurangam Kumaraguru</div>
+        <div class="pub-venue">IJCNN 2019</div>
+      </li>
+      <li>
+        <div class="pub-title">Exploring the Hyperparameter Landscape of Adversarial Robustness <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Evelyn Duesterwald, Anupama Murthi, Ganesh Venkataraman, Mathieu Sinn, <strong>Deepak Vijaykeerthy</strong></div>
+        <div class="pub-venue">arXiv:1905.03837</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2018 -->
+  <div class="year-group">
+    <div class="year-label">2018</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">Explaining Deep Learning Models using Causal Inference <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Tanmayee Narendra, Anush Sankaran, <strong>Deepak Vijaykeerthy</strong>, Senthil Mani</div>
+        <div class="pub-venue">arXiv:1811.04376</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2017 -->
+  <div class="year-group">
+    <div class="year-label">2017</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">An Introduction to Adversarial Machine Learning <span class="venue-badge">BDA</span></div>
+        <div class="pub-authors">Atul Kumar, Sameep Mehta, <strong>Deepak Vijaykeerthy</strong></div>
+        <div class="pub-venue">BDA 2017</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2016 -->
+  <div class="year-group">
+    <div class="year-label">2016</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">Debugging Machine Learning Tasks <span class="venue-badge preprint">Preprint</span></div>
+        <div class="pub-authors">Aleksandar Chakarov, Aditya V. Nori, Sriram K. Rajamani, Shayak Sen, <strong>Deepak Vijaykeerthy</strong></div>
+        <div class="pub-venue">arXiv:1603.07292</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2015 -->
+  <div class="year-group">
+    <div class="year-label">2015</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-title">Efficient Synthesis of Probabilistic Programs <span class="venue-badge">PLDI</span></div>
+        <div class="pub-authors">Aditya V. Nori, Sherjil Ozair, Sriram K. Rajamani, <strong>Deepak Vijaykeerthy</strong></div>
+        <div class="pub-venue">PLDI 2015</div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 Deepak Vijaykeerthy
+</footer>
+
+</body>
+</html>
