@@ -333,15 +333,19 @@
         <h1>Deepak Vijaykeerthy</h1>
         <p class="role">Research Engineer &middot; IBM Research, India</p>
         <p class="bio">
-          Most of my recent work has been on table understanding and multimodal LLMs. I've also
-          been working on applying item response theory (IRT) from psychometrics to
-          model evaluation and am now exploring how these ideas can improve sample
-          efficiency in RL post-training for LLMs.
+          Research engineer with 10+ years of experience in machine learning. I started
+          in probabilistic programming at Microsoft Research, building tools that synthesize
+          statistical models from data (PLDI 2015). At IBM, I spent several years on the
+          reliability side of ML, working on fairness verification, explainability, and
+          systematic model testing (CVPR, UAI, AAAI).
         </p>
         <p class="bio" style="margin-top:0.5rem;">
-          Before IBM Research I was at Microsoft Research, working on probabilistic
-          program synthesis. Over the years I've also worked on trustworthy AI: fairness
-          verification, concept-based explainability, and adversarial robustness.
+          More recently I have been focusing on foundation models: I trained a
+          structure-aware table encoder and fused it with an LLM backbone for table
+          understanding, using trainable slots and a mixture of denoisers to teach the
+          model where to focus across structure and text (AISTATS 2026), and I am applying
+          item response theory from psychometrics to make LLM post-training more
+          sample-efficient.
         </p>
         <p class="bio" style="margin-top:0.5rem;">
           Always happy to chat about research, explore opportunities, or potential collaborations.
@@ -363,8 +367,8 @@
       <div class="theme-card">
         <h3>Foundation Models for Structured Data</h3>
         <p>Tables are a modality, not flat text. We train structure-aware encoders and
-           fuse them with decoder-only LLMs, solving the same alignment and norm mismatch
-           challenges that come up in vision-language models.</p>
+           fuse them with LLMs, using trainable slots and a mixture of denoisers to
+           teach the model where to focus across rows, columns, and text.</p>
       </div>
       <div class="theme-card">
         <h3>Trustworthy AI &amp; Robustness</h3>
@@ -397,15 +401,17 @@
       <div class="feat-venue">AISTATS 2026 (Poster)</div>
       <div class="feat-tldr">
         We treat tables as a modality rather than serialising them into text. A
-        structure-aware encoder is trained on noisy, real-world tables and fused with a
-        frozen decoder-only LLM, similar to how vision encoders are fused in VLMs. To
-        handle the norm mismatch between dense table features and text (the same problem
-        VLMs face), we use adaptor layers, fixed-size trainable slots that compress evidence,
-        and a moment-matching constraint to keep distributions aligned. A mixture of denoisers
-        during the alignment phase acts as a regulariser, teaching the model to filter
-        distractions and preventing drift, so end-to-end tuning stays stable without freezing.
-        Best on 5 of 8 benchmarks without external tools, and under schema corruption our
-        method drops less than 1.5 points while baselines drop 6-22.
+        structure-aware encoder is trained on noisy, real-world tables and fused with an
+        8B LLM decoder, similar to how vision encoders are fused in VLMs. The core fusion
+        challenge is norm mismatch: dense table features are an order of magnitude larger
+        than LLM embeddings. We stabilize end-to-end training without freezing through
+        adaptor layers that project into LLM-compatible space, trainable slots that teach
+        the model where to focus across structure and text by compressing evidence into
+        fixed-size summaries, moment-matching on the adaptor output to align distributions,
+        and a mixture of denoisers that run throughout as regularizers, teaching robust
+        representations in pretraining and addressing reasoning failures during fine-tuning.
+        Best on 5 of 8 benchmarks, and under schema corruption our method drops less than
+        2 points while baselines drop 6-22.
       </div>
     </div>
 
@@ -416,7 +422,7 @@
         <div class="pub-body">
           <div class="pub-title">On Evaluation of Vision Datasets and Models using Human Competency Frameworks</div>
           <div class="pub-authors">Rahul Ramachandran, Tejal Kulkarni, Charchit Sharma, <strong>Deepak Vijaykeerthy</strong>, Vineeth N. Balasubramanian</div>
-          <div class="pub-venue">arXiv 2024</div>
+          <div class="pub-venue">DMLR Workshop, ICML 2024</div>
         </div>
       </li>
       <li>
@@ -425,6 +431,14 @@
           <div class="pub-title">A Framework for Learning Ante-hoc Explainable Models via Concepts</div>
           <div class="pub-authors">Anirban Sarkar, <strong>Deepak Vijaykeerthy</strong>, Anindya Sarkar, Vineeth N. Balasubramanian</div>
           <div class="pub-venue">CVPR 2022</div>
+        </div>
+      </li>
+      <li>
+        <span class="pub-year">2021</span>
+        <div class="pub-body">
+          <div class="pub-title">Automated Testing of AI Models</div>
+          <div class="pub-authors">Swagatam Haldar, <strong>Deepak Vijaykeerthy</strong>, Diptikalyan Saha</div>
+          <div class="pub-venue">arXiv:2110.03320, 2021</div>
         </div>
       </li>
       <li>
