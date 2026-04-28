@@ -353,27 +353,28 @@
         <p class="role-focus">LLM Post-Training, Evaluation &amp; Statistical Measurement</p>
         <p class="bio">
           Research engineer at IBM Research, 10+ years across AI research and engineering. My current focus
-          is LLM post-training and evaluation. The post-training work uses item response
-          theory to recover gradient signal that standard GRPO leaves on the table:
-          when every completion in a group succeeds or every completion fails, the
-          calibrated IRT baseline still produces a signed advantage. The same calibrated
+          is LLM post-training and evaluation. I use item response theory to recover
+          gradient signal that standard GRPO leaves on the table:
+          when every completion in a group succeeds or fails, the calibrated IRT
+          baseline still produces a signed advantage. The same calibrated
           state drives Fisher-information curricula, off-policy replay anchored to current
           ability, and multidimensional skill tracking.
         </p>
         <p class="bio" style="margin-top:0.5rem;">
-          I also train foundation-model systems for structured data: a structure-aware
-          encoder fused with an 8B LLM decoder for table understanding (AISTATS 2026),
-          and deployed LLM agents for enterprise pipeline diagnosis at IBM (SIGMOD 2026
-          Demo). Earlier work was on systematic AI testing, fairness verification,
-          explainability, AutoML pipeline configuration, and probabilistic program
-          synthesis (CVPR, UAI, AAAI, PLDI).
+          I also train foundation-model systems for structured data, such as a
+          structure-aware encoder fused with an 8B LLM decoder for table understanding
+          (AISTATS 2026), and build deployed LLM agents for enterprise pipeline
+          diagnosis at IBM (SIGMOD 2026 Demo). Earlier work was on systematic AI
+          testing, fairness verification, explainability, AutoML pipeline configuration,
+          and probabilistic program synthesis (CVPR, UAI, AAAI, PLDI).
         </p>
         <p class="bio" style="margin-top:0.5rem;">
-          Always happy to chat about research, explore opportunities, or potential collaborations.
+          Always happy to chat about research, opportunities, or potential collaborations.
         </p>
         <div class="social-links">
           <a href="mailto:vdeepak713@outlook.com">Email</a>
           <a href="https://github.com/deepakvijaykee">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a>
           <a href="https://dblp.org/pid/163/3171.html">DBLP</a>
           <a href="https://research.ibm.com/people/deepak-vijaykeerthy">IBM Research</a>
           <a href="https://x.com/dvijaykeerthy">Twitter / X</a>
@@ -396,8 +397,8 @@
       <div class="theme-card">
         <h3>Foundation Models for Structured Data</h3>
         <p>Tables are a modality, not flat text. We train structure-aware encoders and
-           fuse them with LLMs, using trainable slots and a mixture of denoisers to
-           teach the model where to focus across rows, columns, and text.</p>
+           fuse them with LLMs. Trainable slots and a mixture of denoisers teach the
+           model where to focus across rows, columns, and text.</p>
       </div>
       <div class="theme-card">
         <h3>Trustworthy AI &amp; Robustness</h3>
@@ -406,8 +407,8 @@
       </div>
       <div class="theme-card">
         <h3>Probabilistic Programming &amp; AutoML</h3>
-        <p>Synthesizing probabilistic programs from data and automating ML pipeline
-           configuration using constrained optimization.</p>
+        <p>We synthesize probabilistic programs from data and automate ML pipeline
+           configuration with constrained optimization.</p>
       </div>
     </div>
   </section>
@@ -415,6 +416,24 @@
   <!-- Publications -->
   <section id="publications">
     <h2>Selected Publications</h2>
+
+    <!-- Current project: IRT-GRPO -->
+    <div class="featured" style="margin-bottom:1.5rem;">
+      <div class="label">Current project</div>
+      <div class="feat-title">Measurement-Driven RLVR / IRT-GRPO</div>
+      <div class="feat-venue">Ongoing</div>
+      <div class="feat-tldr">
+        I'm applying item response theory as a measurement layer for GRPO-style RLVR
+        on LLM reasoning. The goal is to replace tuned heuristics in current
+        post-training pipelines with decisions driven by calibrated measurement. The
+        current focus is math-reasoning post-training, and a paper is in preparation.
+      </div>
+      <div class="feat-tags">
+        <span>RLVR</span>
+        <span>GRPO</span>
+        <span>IRT</span>
+      </div>
+    </div>
 
     <!-- Featured -->
     <div class="featured">
@@ -431,11 +450,17 @@
         embeddings. To stabilize end-to-end training without freezing the LLM, we use
         four mechanisms: adaptor layers that project into LLM-compatible space,
         trainable slots that compress evidence into fixed-size summaries, moment-matching
-        on the adaptor output to align distributions, and a mixture of denoisers acting
-        as regularizers (corruption-aware in pretraining; task-specific in fine-tuning).
+        on the adaptor output to align distributions, and a mixture of denoisers as
+        regularizers (corruption-aware in pretraining; task-specific in fine-tuning).
         We get the best results on 5 of 8 benchmarks across QA, fact verification, and
         text generation, and under schema corruption our accuracy drops less than 2
         points where baselines lose 6 to 22.
+      </div>
+      <div class="feat-tags">
+        <span>Tables</span>
+        <span>Multimodal LLM</span>
+        <span>Foundation Models</span>
+        <span>Pretraining</span>
       </div>
     </div>
 
