@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deepak Vijaykeerthy — Research</title>
-  <meta name="description" content="Deepak Vijaykeerthy — Research Engineer at IBM Research. Foundation models, trustworthy AI, table understanding, explainability.">
+  <meta name="description" content="Deepak Vijaykeerthy — Research Engineer at IBM Research. LLM post-training, evaluation, foundation models for structured data, trustworthy AI.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
@@ -96,6 +96,13 @@
     .hero-text .role {
       font-size: 1.05rem;
       color: var(--text-secondary);
+      margin-bottom: 0.15rem;
+      font-weight: 500;
+    }
+    .hero-text .role-focus {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-style: italic;
       margin-bottom: 1rem;
       font-weight: 500;
     }
@@ -243,6 +250,16 @@
     }
 
     /* ---- Pub List ---- */
+    .pub-group-label {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--primary);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.01em;
+    }
     .pub-list { list-style: none; }
     .pub-list li {
       padding: 0.9rem 0;
@@ -333,20 +350,23 @@
       <div class="hero-text">
         <h1>Deepak Vijaykeerthy</h1>
         <p class="role">Research Engineer &middot; IBM Research, India</p>
+        <p class="role-focus">LLM Post-Training, Evaluation &amp; Statistical Measurement</p>
         <p class="bio">
-          Research engineer with 10+ years of experience in machine learning. I started
-          in probabilistic programming at Microsoft Research, building tools that synthesize
-          statistical models from data (PLDI 2015). At IBM, I spent several years on the
-          reliability side of ML, working on fairness verification, explainability, and
-          systematic model testing (CVPR, UAI, AAAI).
+          Research engineer at IBM Research, 10+ years in ML systems. My current focus
+          is LLM post-training and evaluation. The post-training work uses item response
+          theory to recover gradient signal that standard GRPO leaves on the table:
+          when every completion in a group succeeds or every completion fails, the
+          calibrated IRT baseline still produces a signed advantage. The same calibrated
+          state drives Fisher-information curricula, off-policy replay anchored to current
+          ability, and multidimensional skill tracking.
         </p>
         <p class="bio" style="margin-top:0.5rem;">
-          More recently I have been focusing on foundation models: I trained a
-          structure-aware table encoder and fused it with an LLM backbone for table
-          understanding, using trainable slots and a mixture of denoisers to teach the
-          model where to focus across structure and text (AISTATS 2026), and I am applying
-          item response theory from psychometrics to make LLM post-training more
-          sample-efficient.
+          I also train foundation-model systems for structured data: a structure-aware
+          encoder fused with an 8B LLM decoder for table understanding (AISTATS 2026),
+          and deployed LLM agents for enterprise pipeline diagnosis at IBM (SIGMOD 2026
+          Demo). Earlier work was on systematic AI testing, fairness verification,
+          explainability, AutoML pipeline configuration, and probabilistic program
+          synthesis (CVPR, UAI, AAAI, PLDI).
         </p>
         <p class="bio" style="margin-top:0.5rem;">
           Always happy to chat about research, explore opportunities, or potential collaborations.
@@ -367,6 +387,13 @@
     <h2>Research Themes</h2>
     <div class="themes">
       <div class="theme-card">
+        <h3>Psychometrics for Evaluation &amp; Post-Training</h3>
+        <p>Item response theory as a measurement layer for evaluation and training. We
+           used IRT to rank 91 vision models from 10 calibrated ImageNet images (Kendall
+           τ = 0.85 vs. the full benchmark). The same machinery now drives our GRPO-based
+           RLVR work above.</p>
+      </div>
+      <div class="theme-card">
         <h3>Foundation Models for Structured Data</h3>
         <p>Tables are a modality, not flat text. We train structure-aware encoders and
            fuse them with LLMs, using trainable slots and a mixture of denoisers to
@@ -382,12 +409,6 @@
         <p>Synthesizing probabilistic programs from data and automating ML pipeline
            configuration using constrained optimization.</p>
       </div>
-      <div class="theme-card">
-        <h3>Psychometrics for Evaluation &amp; Post-Training</h3>
-        <p>We've used item response theory to evaluate vision models (10 images can
-           rank 91 models, Kendall 0.85). Now exploring how these ideas can make RL
-           post-training for LLMs more sample-efficient.</p>
-      </div>
     </div>
   </section>
 
@@ -402,22 +423,24 @@
       <div class="feat-authors"><strong>Deepak Vijaykeerthy</strong>, Arvind Agarwal</div>
       <div class="feat-venue">AISTATS 2026 (Poster)</div>
       <div class="feat-tldr">
-        We treat tables as a modality rather than serialising them into text. A
-        structure-aware encoder is trained on noisy, real-world tables and fused with an
-        8B LLM decoder, similar to how vision encoders are fused in VLMs. The core fusion
-        challenge is norm mismatch: dense table features are an order of magnitude larger
-        than LLM embeddings. We stabilize end-to-end training without freezing through
-        adaptor layers that project into LLM-compatible space, trainable slots that teach
-        the model where to focus across structure and text by compressing evidence into
-        fixed-size summaries, moment-matching on the adaptor output to align distributions,
-        and a mixture of denoisers that run throughout as regularizers, teaching robust
-        representations in pretraining and addressing reasoning failures during fine-tuning.
-        Best on 5 of 8 benchmarks, and under schema corruption our method drops less than
-        2 points while baselines drop 6-22.
+        Serializing a table to a string throws away its row-column structure, the type
+        of each column, and the relationships between cells. We instead treat tables as
+        a modality and fuse a structure-aware encoder with an 8B LLM decoder, the way
+        VLMs fuse vision encoders with language models. The fusion challenge is norm
+        mismatch: dense table features are an order of magnitude larger than LLM
+        embeddings. To stabilize end-to-end training without freezing the LLM, we use
+        four mechanisms: adaptor layers that project into LLM-compatible space,
+        trainable slots that compress evidence into fixed-size summaries, moment-matching
+        on the adaptor output to align distributions, and a mixture of denoisers acting
+        as regularizers (corruption-aware in pretraining; task-specific in fine-tuning).
+        We get the best results on 5 of 8 benchmarks across QA, fact verification, and
+        text generation, and under schema corruption our accuracy drops less than 2
+        points where baselines lose 6 to 22.
       </div>
     </div>
 
-    <!-- Selected list -->
+    <!-- Foundation models, post-training, agents -->
+    <div class="pub-group-label">Foundation models, post-training, and agents</div>
     <ul class="pub-list">
       <li>
         <span class="pub-year">2026</span>
@@ -435,6 +458,11 @@
           <div class="pub-venue">Under review at KDD 2026</div>
         </div>
       </li>
+    </ul>
+
+    <!-- Evaluation, safety, and trustworthy ML -->
+    <div class="pub-group-label">Evaluation, safety, and trustworthy ML</div>
+    <ul class="pub-list">
       <li>
         <span class="pub-year">2024</span>
         <div class="pub-body">
@@ -462,14 +490,6 @@
       <li>
         <span class="pub-year">2020</span>
         <div class="pub-body">
-          <div class="pub-title">An ADMM Based Framework for AutoML Pipeline Configuration</div>
-          <div class="pub-authors">Sijia Liu, Parikshit Ram, <strong>Deepak Vijaykeerthy</strong>, Djallel Bouneffouf, Gregory Bramble, Horst Samulowitz, Dakuo Wang, Andrew Conn, Alexander G. Gray</div>
-          <div class="pub-venue">AAAI 2020</div>
-        </div>
-      </li>
-      <li>
-        <span class="pub-year">2020</span>
-        <div class="pub-body">
           <div class="pub-title">Verifying Individual Fairness in Machine Learning Models</div>
           <div class="pub-authors">Philips George John, <strong>Deepak Vijaykeerthy</strong>, Diptikalyan Saha</div>
           <div class="pub-venue">UAI 2020</div>
@@ -481,6 +501,19 @@
           <div class="pub-title">Hardening Deep Neural Networks via Adversarial Model Cascades</div>
           <div class="pub-authors"><strong>Deepak Vijaykeerthy</strong>, Anshuman Suri, Sameep Mehta, Ponnurangam Kumaraguru</div>
           <div class="pub-venue">IJCNN 2019</div>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Probabilistic inference and optimization -->
+    <div class="pub-group-label">Probabilistic inference and optimization</div>
+    <ul class="pub-list">
+      <li>
+        <span class="pub-year">2020</span>
+        <div class="pub-body">
+          <div class="pub-title">An ADMM Based Framework for AutoML Pipeline Configuration</div>
+          <div class="pub-authors">Sijia Liu, Parikshit Ram, <strong>Deepak Vijaykeerthy</strong>, Djallel Bouneffouf, Gregory Bramble, Horst Samulowitz, Dakuo Wang, Andrew Conn, Alexander G. Gray</div>
+          <div class="pub-venue">AAAI 2020</div>
         </div>
       </li>
       <li>
