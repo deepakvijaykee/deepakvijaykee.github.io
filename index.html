@@ -353,9 +353,9 @@
         <p class="role-focus">LLM Post-Training, Evaluation &amp; Statistical Measurement</p>
         <p class="bio">
           Research engineer at IBM Research, 10+ years across AI research and engineering. My current focus
-          is LLM post-training and evaluation. I use item response theory to recover
+          is LLM post-training and evaluation. I use a calibrated measurement layer to recover
           gradient signal that standard GRPO leaves on the table:
-          when every completion in a group succeeds or fails, the calibrated IRT
+          when every completion in a group succeeds or fails, a calibrated
           baseline still produces a signed advantage. The same calibrated
           state drives Fisher-information curricula, off-policy replay anchored to current
           ability, and multidimensional skill tracking.
@@ -420,18 +420,18 @@
     <!-- Current project: IRT-GRPO -->
     <div class="featured" style="margin-bottom:1.5rem;">
       <div class="label">Current project</div>
-      <div class="feat-title">Measurement-Driven RLVR / IRT-GRPO</div>
+      <div class="feat-title">Measurement-Driven RLVR</div>
       <div class="feat-venue">Ongoing</div>
       <div class="feat-tldr">
-        I'm applying item response theory as a measurement layer for GRPO-style RLVR
-        on LLM reasoning. The goal is to replace tuned heuristics in current
-        post-training pipelines with decisions driven by calibrated measurement. The
-        current focus is math-reasoning post-training, and a paper is in preparation.
+        I'm building a calibrated measurement layer for GRPO-style RLVR on LLM
+        reasoning. The goal is to replace tuned heuristics in current post-training
+        pipelines with decisions driven by calibrated measurement. The current focus
+        is math-reasoning post-training, and a paper is in preparation.
       </div>
       <div class="feat-tags">
         <span>RLVR</span>
         <span>GRPO</span>
-        <span>IRT</span>
+        <span>Measurement Layer</span>
       </div>
     </div>
 
