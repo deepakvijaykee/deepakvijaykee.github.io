@@ -352,13 +352,14 @@
         <p class="role">Research Engineer &middot; IBM Research, India</p>
         <p class="role-focus">LLM Post-Training, Evaluation &amp; Statistical Measurement</p>
         <p class="bio">
-          Research engineer at IBM Research, 10+ years across AI research and engineering. My current focus
-          is LLM post-training and evaluation. I use a calibrated measurement layer to recover
-          gradient signal that standard GRPO leaves on the table:
-          when every completion in a group succeeds or fails, a calibrated
-          baseline still produces a signed advantage. The same calibrated
-          state drives Fisher-information curricula, off-policy replay anchored to current
-          ability, and multidimensional skill tracking.
+          Research engineer at IBM Research, India. ~10 years between research and
+          engineering, currently on LLM post-training. I've been working on a particular
+          failure mode in GRPO: groups of rollouts where every one succeeds or every one
+          fails give zero advantage, so there's no signal for the policy to learn from.
+          The fix I'm exploring is a calibrated measurement model fit alongside training
+          that tracks per-prompt difficulty and policy ability. Plugging that in as the
+          baseline produces a signed advantage even in those cases, and the same fit
+          picks out which prompts to train on next.
         </p>
         <p class="bio" style="margin-top:0.5rem;">
           I also train foundation-model systems for structured data, such as a
@@ -369,7 +370,7 @@
           and probabilistic program synthesis (CVPR, UAI, AAAI, PLDI).
         </p>
         <p class="bio" style="margin-top:0.5rem;">
-          Always happy to chat about research, opportunities, or potential collaborations.
+          Email is the easiest way to reach me if you want to talk about any of this.
         </p>
         <div class="social-links">
           <a href="mailto:vdeepak713@outlook.com">Email</a>
@@ -423,10 +424,10 @@
       <div class="feat-title">Measurement-Driven RLVR</div>
       <div class="feat-venue">Ongoing</div>
       <div class="feat-tldr">
-        I'm building a calibrated measurement layer for GRPO-style RLVR on LLM
-        reasoning. The goal is to replace tuned heuristics in current post-training
-        pipelines with decisions driven by calibrated measurement. The current focus
-        is math-reasoning post-training, and a paper is in preparation.
+        A calibrated measurement model fit alongside GRPO-style RLVR on math reasoning.
+        It tracks per-prompt difficulty and policy ability as training proceeds. Most of
+        the hand-tuned knobs in current pipelines (curriculum order, KL coefficient,
+        replay weighting) are quantities the fit produces directly.
       </div>
       <div class="feat-tags">
         <span>RLVR</span>
@@ -559,6 +560,9 @@
 <footer>
   &copy; 2026 Deepak Vijaykeerthy
 </footer>
+
+<script data-goatcounter="https://deepakvijayke.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
