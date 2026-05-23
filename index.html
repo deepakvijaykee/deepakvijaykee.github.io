@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deepak Vijaykeerthy &middot; Research</title>
-  <meta name="description" content="Research Engineer at IBM Research, India. RL post-training for reasoning models, foundation models for structured (tabular) data, LLM agents for enterprise reasoning, LLM evaluation.">
+  <meta name="description" content="Research Engineer at IBM Research, India. RL post-training for reasoning models, agentic reasoning systems, LLM evaluation, and foundation models for structured (tabular) data.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
@@ -347,6 +347,7 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#systems">Code</a></li>
       <li><a href="#publications">Publications</a></li>
     </ul>
   </nav>
@@ -357,8 +358,8 @@
   <!-- News -->
   <div class="news-bar">
     <span class="badge">New</span>
-    <strong>"From Cells to Sentences: An End-to-End Framework for Table Understanding"</strong> accepted at <strong>AISTATS 2026</strong>
-    &middot; <strong>"Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning"</strong> accepted at <strong>ACM SIGMOD 2026</strong> (Demo Track), with the system now deployed in IBM watsonx.data integration on production DataStage pipelines.
+    <strong>"Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning"</strong> accepted at <strong>ACM SIGMOD 2026</strong> (Demo Track), with the system now deployed in IBM watsonx.data integration on production DataStage pipelines
+    &middot; <strong>"From Cells to Sentences: An End-to-End Framework for Table Understanding"</strong> accepted at <strong>AISTATS 2026</strong>.
   </div>
   <!-- Hero -->
   <section id="about">
@@ -407,8 +408,6 @@
         <div class="social-links">
           <a href="mailto:vdeepak713@outlook.com">Email</a>
           <a href="https://github.com/deepakvijaykee">GitHub</a>
-          <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a>
-          <a href="https://dblp.org/pid/163/3171.html">DBLP</a>
           <a href="https://research.ibm.com/people/deepak-vijaykeerthy">IBM Research</a>
           <a href="https://x.com/deepakvijayke">Twitter / X</a>
         </div>
@@ -437,21 +436,6 @@
            cells and surrounding text that a question depends on (via end-to-end fusion
            with an 8B-parameter decoder-only LLM). AISTATS 2026.</p>
       </div>
-      <div class="theme-card span-2">
-        <h3>Open Source</h3>
-        <p>I maintain two open-source sandboxes.
-           <a href="https://github.com/deepakvijaykee/rl-experiments"><code>rl-experiments</code></a>
-           studies which rollouts deserve gradient credit, and at what granularity,
-           when reward is sparse, noisy, delayed, or vector-valued. It contains a
-           tree-of-rollouts GRPO flow for small causal LMs that use tools and recurse
-           on themselves, and a Vector Policy Optimization companion on set-valued
-           rewards.
-           <a href="https://github.com/deepakvijaykee/minilab"><code>minilab</code></a>
-           is a small-scale language-model training lab. Pretraining, SFT, preference
-           optimization, and RLVR run end to end on a single consumer GPU; a
-           masked-diffusion branch runs alongside the autoregressive one, stage for
-           stage. Post-training behavior is easier to reason about at this scale.</p>
-      </div>
       <div class="theme-card">
         <h3>Trustworthy AI &amp; Robustness</h3>
         <p>Verifying and explaining what ML models actually do. Formal verification of
@@ -466,6 +450,31 @@
            and Hyperparameter optimisation (CASH) problem for AutoML pipeline
            configuration (AAAI 2020).</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section id="systems">
+    <h2>Code</h2>
+    <div class="theme-card">
+      <p>I maintain two open-source projects.
+         <a href="https://github.com/deepakvijaykee/rl-experiments"><code>rl-experiments</code></a>
+         is a small PyTorch sandbox that compares RL post-training update rules on
+         bandit and sequence tasks. It studies what those update rules do to a policy
+         when reward is sparse, noisy, delayed, or vector-valued: which samples and
+         tokens an update should weight, how stale reused off-policy data can be, and
+         what drives entropy collapse. Companion setups cover on-policy distillation,
+         multi-objective optimization under vector-valued rewards, and GRPO for
+         tool-using LMs that recursively call themselves, where credit must propagate
+         over a rollout tree rather than a flat sequence.
+         <a href="https://github.com/deepakvijaykee/minilab"><code>minilab</code></a>
+         runs the full training pipeline (pretraining, SFT, preference optimization,
+         RLVR) end to end on a single consumer GPU. At small scale, SFT and preference
+         tuning shift response format faster than task accuracy, since re-weighting
+         cannot add capability the base never learned, and GRPO produces no gradient
+         on zero-variance groups, where every rollout earns the same reward. minilab
+         also includes a masked-diffusion track that repeats the same four stages with
+         diffusion-native objectives, including diffusion analogues of DPO and GRPO.</p>
     </div>
   </section>
 
