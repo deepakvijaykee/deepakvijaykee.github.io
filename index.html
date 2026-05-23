@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deepak Vijaykeerthy &middot; Research</title>
-  <meta name="description" content="Research Engineer at IBM Research, India. RL post-training for reasoning models, foundation models for structured (tabular) data, LLM evaluation, trustworthy ML.">
+  <meta name="description" content="Research Engineer at IBM Research, India. RL post-training for reasoning models, foundation models for structured (tabular) data, LLM agents for enterprise reasoning, LLM evaluation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
@@ -193,6 +193,13 @@
       color: var(--text-secondary);
       line-height: 1.6;
     }
+    .theme-card.span-2 {
+      grid-column: 1 / -1;
+    }
+    .theme-card code {
+      font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
 
     /* ---- Featured Pub ---- */
     .featured {
@@ -302,6 +309,16 @@
       font-size: 0.9rem;
       font-weight: 600;
     }
+    .more-pubs {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+    .more-pubs a {
+      font-weight: 600;
+    }
 
     /* ---- Footer ---- */
     footer {
@@ -340,7 +357,7 @@
   <!-- News -->
   <div class="news-bar">
     <span class="badge">New</span>
-    <strong>"From Cells to Sentences: An End-to-End Framework for Table Understanding"</strong> accepted at <strong>AISTATS 2026</strong>.
+    <strong>"From Cells to Sentences: An End-to-End Framework for Table Understanding"</strong> accepted at <strong>AISTATS 2026</strong>
     &middot; <strong>"Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning"</strong> accepted at <strong>ACM SIGMOD 2026</strong> (Demo Track), with the system now deployed in IBM watsonx.data integration on production DataStage pipelines.
   </div>
   <!-- Hero -->
@@ -377,10 +394,12 @@
         <p class="bio" style="margin-top:0.5rem;">
           A separate strand is on LLM-based agents for root-cause diagnosis of ETL
           pipeline failures, now deployed in IBM's data integration product (SIGMOD
-          2026 Demo). Earlier work covered formal verification of individual fairness,
-          concept-based ante-hoc explainability, AutoML pipeline configuration as
-          constrained optimisation, MCMC-based synthesis of probabilistic programs,
-          and automated test-input generation for ML systems.
+          2026 Demo). A companion benchmark for evaluating this class of agents,
+          DataBench, is under review at KDD 2026. Earlier work covered formal
+          verification of individual fairness, concept-based ante-hoc explainability,
+          AutoML pipeline configuration as constrained optimisation, MCMC-based
+          synthesis of probabilistic programs, and automated test-input generation
+          for ML systems.
         </p>
         <p class="bio" style="margin-top:0.5rem;">
           Email is the best way to reach me.
@@ -391,7 +410,7 @@
           <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a>
           <a href="https://dblp.org/pid/163/3171.html">DBLP</a>
           <a href="https://research.ibm.com/people/deepak-vijaykeerthy">IBM Research</a>
-          <a href="https://x.com/dvijaykeerthy">Twitter / X</a>
+          <a href="https://x.com/deepakvijayke">Twitter / X</a>
         </div>
       </div>
     </div>
@@ -417,6 +436,18 @@
            denoisers over a structure-aware encoder), and getting it to attend to the
            cells and surrounding text that a question depends on (via end-to-end fusion
            with an 8B-parameter decoder-only LLM). AISTATS 2026.</p>
+      </div>
+      <div class="theme-card span-2">
+        <h3>Open Source</h3>
+        <p>Public research sandboxes that sit alongside the papers.
+           <a href="https://github.com/deepakvijaykee/rl-experiments"><code>rl-experiments</code></a>
+           is a PyTorch sandbox for studying which samples and tokens deserve gradient
+           weight in post-training RL, with companion flows for tree-of-rollouts GRPO
+           on small causal LMs and Vector Policy Optimization on set-valued rewards.
+           <a href="https://github.com/deepakvijaykee/minilab"><code>minilab</code></a>
+           is a single-GPU end-to-end post-training pipeline (pretraining, SFT,
+           preference optimization, RLVR), with a parallel masked-diffusion branch
+           that mirrors the autoregressive one stage by stage.</p>
       </div>
       <div class="theme-card">
         <h3>Trustworthy AI &amp; Robustness</h3>
@@ -558,7 +589,12 @@
       </li>
     </ul>
 
-    <a href="publications.html" class="all-pubs-link">View all publications &rarr;</a>
+    <p class="more-pubs">
+      Full publication list on
+      <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a>
+      and
+      <a href="https://dblp.org/pid/163/3171.html">DBLP</a>.
+    </p>
   </section>
 
 </div>
