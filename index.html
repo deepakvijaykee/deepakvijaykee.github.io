@@ -367,7 +367,7 @@
       <div class="hero-text">
         <h1>Deepak Vijaykeerthy</h1>
         <p class="role">Research Engineer &middot; IBM Research, India</p>
-        <p class="role-focus">RL Post-Training &middot; LLM Evaluation &middot; Foundation Models for Structured Data</p>
+        <p class="role-focus">RL Post-Training &middot; Agentic Reasoning &middot; LLM Evaluation &middot; Foundation Models for Structured Data</p>
         <p class="bio">
           Research Engineer at IBM Research, India, with about a decade of work across
           applied research and engineering. I am currently exploring sample efficiency
@@ -439,15 +439,18 @@
       </div>
       <div class="theme-card span-2">
         <h3>Open Source</h3>
-        <p>Public research sandboxes that sit alongside the papers.
+        <p>I maintain two open-source sandboxes.
            <a href="https://github.com/deepakvijaykee/rl-experiments"><code>rl-experiments</code></a>
-           is a PyTorch sandbox for studying which samples and tokens deserve gradient
-           weight in post-training RL, with companion flows for tree-of-rollouts GRPO
-           on small causal LMs and Vector Policy Optimization on set-valued rewards.
+           studies which rollouts deserve gradient credit, and at what granularity,
+           when reward is sparse, noisy, delayed, or vector-valued. It contains a
+           tree-of-rollouts GRPO flow for small causal LMs that use tools and recurse
+           on themselves, and a Vector Policy Optimization companion on set-valued
+           rewards.
            <a href="https://github.com/deepakvijaykee/minilab"><code>minilab</code></a>
-           is a single-GPU end-to-end post-training pipeline (pretraining, SFT,
-           preference optimization, RLVR), with a parallel masked-diffusion branch
-           that mirrors the autoregressive one stage by stage.</p>
+           is a small-scale language-model training lab. Pretraining, SFT, preference
+           optimization, and RLVR run end to end on a single consumer GPU; a
+           masked-diffusion branch runs alongside the autoregressive one, stage for
+           stage. Post-training behavior is easier to reason about at this scale.</p>
       </div>
       <div class="theme-card">
         <h3>Trustworthy AI &amp; Robustness</h3>
