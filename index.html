@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deepak Vijaykeerthy &middot; Research</title>
 <meta name="description" content="Research Engineer at IBM. Post-training language models and agents with reinforcement learning, and simulated environments for evaluating and training agents.">
+<link rel="canonical" href="https://deepakvijaykee.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deepakvijaykee.github.io/">
+<meta property="og:title" content="Deepak Vijaykeerthy, Research Engineer at IBM">
+<meta property="og:description" content="Sample-efficient RL post-training for language models and agents, and simulated worlds for evaluating and training agents.">
+<meta property="og:image" content="https://deepakvijaykee.github.io/images/photo.jpeg">
+<meta property="og:image:alt" content="Deepak Vijaykeerthy">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -68,6 +76,7 @@
   .focus { font-size: 0.9rem; color: var(--accent); font-style: italic; font-weight: 500; margin: 0.1rem 0 0.9rem; }
   .bio { font-size: 0.95rem; line-height: 1.75; }
   .bio + .bio { margin-top: 0.5rem; }
+  .bio.recent { font-size: 0.88rem; color: var(--muted); }
   .social { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
   .social a { padding: 0.3rem 0.8rem; border: 1px solid var(--border); border-radius: 6px;
               font-size: 0.8rem; font-weight: 500; color: var(--muted); }
@@ -84,14 +93,17 @@
   .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 0.25rem 1.25rem; }
   .item { padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
   .item:last-child { border-bottom: none; }
+  .item.lead-item { background: var(--feat-bg); border: 1px solid var(--feat-border); border-radius: 8px;
+                    padding: 1rem 1.1rem; margin: 0.85rem -0.35rem; }
+  .item.lead-item .title { font-size: 1.05rem; }
   .head { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
   .title { font-weight: 600; color: var(--primary); font-size: 0.97rem; }
   .head a.title { color: var(--accent); }
   .pill { font-size: 0.7rem; font-weight: 600; padding: 0.05rem 0.55rem; border-radius: 999px;
           background: var(--pill-bg); color: var(--pill); white-space: nowrap; letter-spacing: 0.01em; }
   .lead-p { font-size: 0.95rem; margin: 0 0 0.85rem; line-height: 1.75; }
-  .item p { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.65; }
-  ul.findings { padding-left: 1.1rem; font-size: 0.9rem; color: var(--muted); margin-top: 0.35rem; }
+  .item p { font-size: 0.93rem; color: var(--text); margin-top: 0.2rem; line-height: 1.7; }
+  ul.findings { padding-left: 1.1rem; font-size: 0.93rem; color: var(--text); margin-top: 0.35rem; line-height: 1.7; }
   ul.findings li { margin: 0.2rem 0; }
 
   .notes { list-style: none; }
@@ -120,6 +132,8 @@
   .pub-list li:last-child { border-bottom: none; }
   .year { flex-shrink: 0; font-size: 0.74rem; font-weight: 700; color: var(--badge); background: var(--badge-bg);
           padding: 0.1rem 0.5rem; border-radius: 4px; min-width: 44px; text-align: center; }
+  .pt a { color: var(--text); }
+  .pt a:hover { color: var(--accent); }
   .pt { font-weight: 600; font-size: 0.92rem; line-height: 1.45; }
   .pv { font-size: 0.82rem; font-weight: 600; color: var(--accent); }
   .pd { font-size: 0.85rem; color: var(--muted); }
@@ -141,8 +155,9 @@
     nav { height: auto; flex-wrap: wrap; padding: 0.6rem 0; row-gap: 0.2rem; }
     nav ul { gap: 1rem; }
     .container { padding: 2rem 1rem 1.5rem; }
-    .hero { flex-direction: column; align-items: center; text-align: center; }
-    .social { justify-content: center; }
+    .hero { flex-direction: column; align-items: center; }
+    .hero > div { align-self: stretch; text-align: left; }
+    .hero h1 { text-align: center; }
     .panel { padding: 0.25rem 1rem; }
     .featured { grid-template-columns: 1fr; padding: 1rem; }
     .featured .fig { height: 170px; }
@@ -177,6 +192,7 @@
          the simulated worlds those agents are evaluated and trained in. I was a Research
          Assistant at Microsoft Research India from 2013 to 2015 and have been at IBM Research
          since 2016, working across the line between research and shipped systems. My work has appeared at AISTATS, SIGMOD, CVPR, UAI, AAAI and PLDI.</p>
+      <p class="bio recent">Recent: <a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences</a> (AISTATS 2026, a table encoder fused with an 8B LLM) &middot; <a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Multi-agent root-cause diagnosis for ETL pipelines</a> (SIGMOD 2026, deployed in IBM watsonx.data integration)</p>
       <p class="bio">Email is the best way to reach me.</p>
       <div class="social">
         <a href="mailto:vdeepak713@outlook.com">Email</a>
@@ -192,15 +208,13 @@
     <h2>Current Research</h2>
 
     <div class="group">Sample-efficient RL post-training</div>
-    <p class="lead-p">Generation dominates the cost of RL post-training, and a group-relative update only
-       learns from prompts whose rollouts disagree. Whatever the policy always solves, or
-       never solves, is compute that buys no gradient. So sample efficiency is mostly a
+    <p class="lead-p">Generation dominates the cost of RL post-training, and a group-relative update gets a direct learning signal only from prompts whose rollouts disagree. Whatever the policy always solves, or
+       never solves, is compute that buys no direct gradient. So sample efficiency is mostly a
        question of where learning signal can exist and how to keep training there, measured
-       by problems the policy comes to solve that it couldn't before. The three studies below
-       come at that question from the learner, from the environment and from the harness.</p>
+       by problems the policy comes to solve that it couldn't before. The studies below come at that question from the learner, from the environment it trains in and from the harness it works through.</p>
     <div class="panel">
-      <div class="item">
-        <div class="head"><span class="title">A model of the learner</span><span class="pill">Working Paper</span></div>
+      <div class="item lead-item">
+        <div class="head"><span class="title">A model of the learner</span><span class="pill">In Progress</span></div>
         <p>Each RL step decides the baseline, how much each prompt counts, how many rollouts to
            draw and whether to replay old data, and most recipes make those decisions by fixed
            rule, blind to the learner. Yet where a gradient exists depends on the learner's
@@ -209,8 +223,7 @@
            measurement of it. We track that state with a dynamic state-space model, using item
            response theory to relate it to verifier outcomes, so the decisions can follow the
            learner as it moves. The same uncertainty tells us when a problem the policy almost
-           never solves is still worth an attempt, which is where new capability has to come
-           from.</p>
+           never solves is still worth an attempt, which is where new capability has to come from. The idea grows out of our earlier work using item response theory to evaluate models (<a href="https://arxiv.org/abs/2409.04041">ICML 2024 DMLR</a>), where the model being measured held still. Here it changes with every step.</p>
       </div>
       <div class="item">
         <div class="head"><span class="title">Co-evolving the environment with the agent</span><span class="pill">In Progress</span></div>
@@ -228,6 +241,26 @@
            them, since a correct answer can be a lucky guess.</p>
       </div>
       <div class="item">
+        <div class="head"><span class="title">Worlds for evaluating and training agents</span><span class="pill">In Progress</span></div>
+        <p>The study above assumes worlds rich enough to move with the agent, and
+           building them is a research problem of its own. Agents are usually tested in a world
+           that waits for them. A real enterprise keeps moving. Its systems are coupled,
+           processes run between the agent's actions, and anything the agent does, even a read,
+           feeds into what happens next. So the future can't be precomputed, and each run has to
+           be simulated live, as a POMDP whose hidden state evolves under the world's own
+           dynamics as well as the agent's actions. With colleagues at IBM we generate such
+           worlds with LLMs, to evaluate agents before deployment and later to train them with
+           RL. The hard part is fidelity over a long, branching run, where an LLM stepping the
+           world turn by turn drifts. Our view is that fidelity is owed only on the surface an
+           agent touches, since two worlds that respond identically to everything an agent can do
+           are, to that agent, the same world. A world starts from a seed, and its dynamics are
+           learned from traces. The surface itself is still demanding. It has memory, because
+           whatever the agent has read or written must stay consistent, and it widens as agents
+           get stronger. Training raises the bar further, because a policy optimized with RL will
+           find and exploit any error in the world that happens to pay off, the way policies
+           learn to exploit bugs in a physics simulator.</p>
+      </div>
+      <div class="item">
         <div class="head"><span class="title">Co-evolving the harness with the model</span><span class="pill">In Progress</span></div>
         <p>A harness can move an agent's results as much as further training, yet it's usually
            designed once, by hand, and frozen while the model trains. Each component encodes its
@@ -242,30 +275,7 @@
            outgrows the context. Judgment under uncertainty should end up in the model.</p>
       </div>
     </div>
-
-    <div class="group">Simulated worlds for agents</div>
-    <div class="panel">
-      <div class="item">
-        <div class="head"><span class="title">Worlds for evaluating and training agents</span><span class="pill">In Progress</span></div>
-        <p>Agents are usually tested in a world that waits for them. A real enterprise keeps
-           moving. Its systems are coupled, processes run between the agent's actions, and
-           anything the agent does, even a read, feeds into what happens next. So the future
-           can't be precomputed, and each run has to be simulated live, as a POMDP whose hidden
-           state evolves under the world's own dynamics as well as the agent's actions. With
-           colleagues at IBM we generate such worlds with LLMs, to evaluate agents before
-           deployment and later to train them with RL. The hard part is fidelity over a long,
-           branching run, where an LLM stepping the world turn by turn drifts. Our view is that
-           fidelity is owed only on the surface an agent touches, since two worlds that respond
-           identically to everything an agent can do are, to that agent, the same world. A world
-           starts from a seed, and its dynamics are learned from traces. The surface itself is
-           still demanding. It has memory, because whatever the agent has read or written must
-           stay consistent, and it widens as agents get stronger. Training raises the bar
-           further, because a policy optimized with RL will find and exploit any error in the
-           world that happens to pay off, the way policies learn to exploit bugs in a physics
-           simulator.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
   <section id="publications">
     <h2>Selected Publications</h2>
@@ -278,9 +288,7 @@
         <div class="authors"><span class="me">Deepak Vijaykeerthy</span>, Arvind Agarwal</div>
         <p>Serializing a table into text teaches a model the serialization, down to the header
            strings and the row order. If you rename a column or shuffle the rows, accuracy falls
-           apart, even though the table means exactly what it did before. We treat tables as a
-           modality with their own encoder, much as vision-language models treat images. The
-           encoder learns by reconstructing tables we've deliberately corrupted, which teaches it to represent a table's structure and content under any surface form. The resulting model
+           apart, even though the table means exactly what it did before. We treat tables as a modality with their own encoder, fused end to end with an 8B decoder-only LLM, much as vision-language models treat images. The encoder is pretrained on 3 million tables by reconstructing ones we've deliberately corrupted, which teaches it to represent a table's structure and content under any surface form. The resulting model
            understands a noisy table, finds the information a question needs, and reasons only from that evidence. Under row shuffling and anonymized headers we lose under 2 points.
            The same architecture, fine-tuned directly on the same data, loses 6 to 22 points.</p>
         <div class="plinks"><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">Paper</a><a href="https://raw.githubusercontent.com/mlresearch/v300/main/assets/vijaykeerthy26a/vijaykeerthy26a.pdf">PDF</a></div>
@@ -309,12 +317,12 @@
       <li><span class="year">2026</span><div><div class="pt">DataBench: A Benchmark Dataset to Evaluate Agents for Data Pipeline Remediation</div>
           <div class="pd">Ritwik Chaudhuri, <span class="me">Deepak Vijaykeerthy</span>, et al. Benchmarks for data agents mostly ask them to build pipelines from a clear specification. Much of production work is repair, and repair is harder, because the agent first has to infer what a broken pipeline was meant to do from its code and the log of a failed run. DataBench poses that problem directly. Each case injects one fault into a working pipeline or its data, and a fix counts only if the pipeline runs again and reproduces the correct output table. Across 86 such cases in nine fault categories, agents built on current state-of-the-art LLMs fix about 30%.</div>
           <div class="pv">Under review at KDD 2027</div></div></li>
-      <li><span class="year">2024</span><div><div class="pt">On Evaluation of Vision Datasets and Models using Human Competency Frameworks</div><div class="pv">DMLR Workshop, ICML 2024</div></div></li>
-      <li><span class="year">2022</span><div><div class="pt">A Framework for Learning Ante-hoc Explainable Models via Concepts</div><div class="pv">CVPR 2022</div></div></li>
-      <li><span class="year">2020</span><div><div class="pt">Verifying Individual Fairness in Machine Learning Models</div><div class="pv">UAI 2020</div></div></li>
-      <li><span class="year">2020</span><div><div class="pt">An ADMM Based Framework for AutoML Pipeline Configuration</div><div class="pv">AAAI 2020</div></div></li>
-      <li><span class="year">2019</span><div><div class="pt">Hardening Deep Neural Networks via Adversarial Model Cascades</div><div class="pv">IJCNN 2019</div></div></li>
-      <li><span class="year">2015</span><div><div class="pt">Efficient Synthesis of Probabilistic Programs</div><div class="pv">PLDI 2015</div></div></li>
+      <li><span class="year">2024</span><div><div class="pt"><a href="https://arxiv.org/abs/2409.04041">On Evaluation of Vision Datasets and Models using Human Competency Frameworks</a></div><div class="pv">DMLR Workshop, ICML 2024</div></div></li>
+      <li><span class="year">2022</span><div><div class="pt"><a href="https://doi.org/10.1109/CVPR52688.2022.01004">A Framework for Learning Ante-hoc Explainable Models via Concepts</a></div><div class="pv">CVPR 2022</div></div></li>
+      <li><span class="year">2020</span><div><div class="pt"><a href="https://arxiv.org/abs/2006.11737">Verifying Individual Fairness in Machine Learning Models</a></div><div class="pv">UAI 2020</div></div></li>
+      <li><span class="year">2020</span><div><div class="pt"><a href="https://doi.org/10.1609/aaai.v34i04.5926">An ADMM Based Framework for AutoML Pipeline Configuration</a></div><div class="pv">AAAI 2020</div></div></li>
+      <li><span class="year">2019</span><div><div class="pt"><a href="https://doi.org/10.1109/IJCNN.2019.8851970">Hardening Deep Neural Networks via Adversarial Model Cascades</a></div><div class="pv">IJCNN 2019</div></div></li>
+      <li><span class="year">2015</span><div><div class="pt"><a href="https://doi.org/10.1145/2737924.2737982">Efficient Synthesis of Probabilistic Programs</a></div><div class="pv">PLDI 2015</div></div></li>
     </ul>
     <p class="more">Full list on <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a> and <a href="https://dblp.org/pid/163/3171.html">DBLP</a>.</p>
   </section>
@@ -323,7 +331,7 @@
     <h2>Experience</h2>
     <ul class="exp">
       <li><div><span class="org">IBM Research</span> <span class="what">&middot; Research Engineer &middot; 2016 to present</span>
-          <div class="exp-d">I now work on post-training and agents. Earlier I built foundation models for tabular data and LLM agents for data engineering, one of which shipped in watsonx.data integration. Before that I worked on fairness verification, explainability, adversarial robustness, test generation for ML systems and AutoML.</div></div></li>
+          <div class="exp-d">I now work on post-training and agents, and I've run continued pretraining, SFT and RL myself on models up to 8B. Earlier I built foundation models for tabular data and LLM agents for data engineering, one of which shipped in watsonx.data integration. Before that I worked on fairness verification, explainability, adversarial robustness, test generation for ML systems and AutoML.</div></div></li>
       <li><div><span class="org">Microsoft Research India</span> <span class="what">&middot; Research Assistant &middot; 2013 to 2015</span>
           <div class="exp-d">I worked on synthesizing probabilistic programs from observation traces with MCMC (PLDI 2015).</div></div></li>
     </ul>
@@ -341,16 +349,14 @@
            isolates these choices in PyTorch sandboxes small enough to read the gradient
            directly, so failures that take days to surface at scale show up on a single GPU.</p>
         <ul class="findings">
-          <li>Group-relative RL only moves prompts the policy solves some of the time. Prompts it
-              never solves give no signal yet, and prompts it always solves are spent. Pretraining,
+          <li>Group-relative RL gets a direct signal only from prompts the policy solves some of the time. Prompts it never solves give no signal yet, and prompts it always solves are spent. Pretraining,
               SFT, curricula, larger groups and distillation all bring tasks into that useful range,
               each by a different route, which is why they aren't interchangeable fixes for sparse
               reward.</li>
           <li>In our sandbox, GRPO's entropy collapse traces to the standard-deviation
               normalization. When a group nearly agrees, dividing by its spread inflates a
               negligible reward gap into a full-sized step. The clip only bounds the size of that
-              step, so tightening it barely helps, and the variants that do slow the collapse, such
-              as Dr. GRPO, change the normalization.</li>
+              step, so tightening it barely helps, and the variants that do slow the collapse, such as Dr. GRPO, change the normalization. Whether the same mechanism dominates in large-scale runs is the next thing to test.</li>
           <li>Assigning credit at a finer grain redistributes the signal a reward already contains
               and can't create signal where the reward is silent. That's a job for reward shaping.</li>
         </ul>
