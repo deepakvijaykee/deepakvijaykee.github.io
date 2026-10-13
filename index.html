@@ -226,15 +226,14 @@
         <div class="head"><span class="title">A model of the learner</span><span class="pill">In Progress</span></div>
         <p>GRPO-style recipes make several training decisions by fixed rule: uniform prompt
            sampling, a fixed number of rollouts per prompt, and a baseline and normalization
-           computed from the current group alone. Nothing carries over from one step to the next
-           about what the policy can and can&#x27;t solve, although that&#x27;s what determines which
-           prompts produce a gradient. Each batch of rollouts is also a measurement of the
-           policy, and standard recipes use it only to compute the update. We&#x27;re building a
-           model of the learner from these measurements, so that sampling, rollout allocation and
-           weighting can adapt as training progresses. This extends our earlier work on
-           estimating a model's ability from a few test items (<a
-           href="https://arxiv.org/abs/2409.04041">ICML 2024 DMLR</a>), where the model being
-           measured didn&#x27;t change.</p>
+           computed from the current group alone. Most recipes keep no running estimate of what
+           the policy can and can't solve, although that's what determines which prompts produce
+           a gradient. Dynamic sampling and difficulty filters adjust which prompts are used,
+           mostly from recent outcomes. Each batch of rollouts is also a measurement of the
+           policy. We're building a persistent model of the learner from these measurements that
+           informs the baseline, the weighting and the number of rollouts as well as sampling.
+           This extends our earlier work on estimating a model's ability from a few test items
+           (<a href="https://arxiv.org/abs/2409.04041">ICML 2024 DMLR</a>), where the model being measured didn't change.</p>
       </div>
       <div class="item">
         <div class="head"><span class="title">Co-evolving the environment with the agent</span><span class="pill">In Progress</span></div>
@@ -270,8 +269,7 @@
            is managed. Harness changes can shift performance as much as further training, yet
            harnesses are usually designed by hand and kept fixed during training. Each component
            encodes an assumption about what the model needs, and the same component can help one
-           model and hurt another. Building a strategy into a tool also removes the need for the model to learn it. Our hypothesis is that scaffolding works best as a temporary aid, added where
-           a model falls short and removed once it has learned the capability. What remains at
+           model and hurt another. Building a strategy into a tool also removes the need for the model to learn it. Our hypothesis is that scaffolding works best as a temporary aid, added between rounds of RL where a model falls short and removed once it has learned the capability. What remains at
            the end would show which computation and state are better kept outside the weights.</p>
       </div>
     </div>
