@@ -200,8 +200,7 @@
       <h1>Deepak Vijaykeerthy</h1>
       <div class="role">Research Engineer &middot; IBM</div>
       <div class="focus">LLM Post-Training &middot; Agentic RL &middot; Simulated Environments for Agents</div>
-      <p class="bio">I work on post-training language models and agents with reinforcement learning, and on
-         the simulated worlds those agents are evaluated and trained in. I was a Research
+      <p class="bio">I work on post-training language models and agents with reinforcement learning, and on the simulated environments those agents are evaluated and trained in. I was a Research
          Assistant at Microsoft Research India from 2013 to 2015 and have been at IBM Research since 2016. My work has appeared at AISTATS, SIGMOD, CVPR, UAI, AAAI and PLDI.</p>
       <p class="bio">Email is the best way to reach me.</p>
       <div class="social">
@@ -218,71 +217,62 @@
     <h2>Current Research</h2>
 
     <div class="group">Sample-efficient RL post-training</div>
-    <p class="lead-p">Generation dominates the cost of RL post-training, and a group-relative update gets a direct learning signal only from prompts whose rollouts disagree. Whatever the policy always solves, or
-       never solves, is compute that buys no direct gradient. So sample efficiency is mostly a
-       question of where learning signal can exist and how to keep training there, measured
-       by problems the policy comes to solve that it couldn't before. </p>
+    <p class="lead-p">Rollout generation is often the largest cost in RL post-training. With a group-relative baseline, a prompt contributes a direct gradient only when its rollouts
+       disagree, so compute spent on prompts the policy always or never solves is largely
+       wasted. The work below asks how to spend that compute where the policy can still
+       learn.</p>
     <div class="panel">
       <div class="item lead-item">
         <div class="head"><span class="title">A model of the learner</span><span class="pill">In Progress</span></div>
-        <p>Each RL step decides the baseline, how much each prompt counts, how many rollouts to
-           draw and whether to replay old data, and most recipes make those decisions by fixed
-           rule, blind to the learner. Yet where a gradient exists depends on the learner's
-           current state, and that state is latent. Training is really a partially observed
-           control problem, in which every step both changes the learner and gives a noisy
-           measurement of it. We track that state with a dynamic state-space model, using item
-           response theory to relate it to verifier outcomes, so the decisions can follow the
-           learner as it moves. The same uncertainty tells us when a problem the policy almost
-           never solves is still worth an attempt, which is where new capability has to come from. The idea grows out of our earlier work using item response theory to evaluate models (<a href="https://arxiv.org/abs/2409.04041">ICML 2024 DMLR</a>), where the model being measured held still. Here it changes with every step.</p>
+        <p>GRPO-style recipes make several training decisions by fixed rule: uniform prompt
+           sampling, a fixed number of rollouts per prompt, and a baseline and normalization
+           computed from the current group alone. Nothing carries over from one step to the next
+           about what the policy can and can&#x27;t solve, although that&#x27;s what determines which
+           prompts produce a gradient. Each batch of rollouts is also a measurement of the
+           policy, and standard recipes use it only to compute the update. We&#x27;re building a
+           model of the learner from these measurements, so that sampling, rollout allocation and
+           weighting can adapt as training progresses. This extends our earlier work on
+           estimating a model's ability from a few test items (<a
+           href="https://arxiv.org/abs/2409.04041">ICML 2024 DMLR</a>), where the model being
+           measured didn&#x27;t change.</p>
       </div>
       <div class="item">
         <div class="head"><span class="title">Co-evolving the environment with the agent</span><span class="pill">In Progress</span></div>
-        <p>A training distribution that suits one checkpoint has stopped suiting the next by the
-           time training gets there, so the environment has to move with the policy. What the
-           worlds teach matters as much as how hard they are, and we see that sharply in search
-           agents. An agent that has found three affected customers can't tell from those three
-           whether a fourth exists, so stopping is a bet on what it hasn't seen. Agents trained
-           with outcome rewards stop too early. Our reading is that they've learned the base
-           rates of their training worlds, which is exactly what an outcome reward pays for. So
-           we let the worlds carry the lesson. Their base rates vary from world to world, they
-           keep the clues a real collection would leave, and they're rebuilt from each new
-           checkpoint, so the only policy that keeps paying is one that reads its evidence. We
-           place tasks at the frontier by whether the agent reached the evidence that settles
-           them, since a correct answer can be a lucky guess.</p>
+        <p>As the policy improves, a fixed task distribution stops producing useful training
+           signal, so the environment has to change with it. We study this with search agents,
+           where what the environment teaches matters as much as how hard it is. An agent that
+           has found three affected customers can&#x27;t tell from those records whether a fourth
+           exists, so stopping is a bet on evidence it hasn&#x27;t seen. Agents trained with outcome
+           rewards tend to stop too early. Our hypothesis is that they learn the base rates of
+           their training data. If the missing record is rare in training, stopping early is
+           usually correct and saves search cost, so the reward favors it. We&#x27;re studying how to
+           build and adapt training environments so that stopping depends on the evidence the
+           agent has gathered.</p>
       </div>
       <div class="item">
-        <div class="head"><span class="title">Worlds for evaluating and training agents</span><span class="pill">In Progress</span></div>
-        <p>The study above assumes worlds rich enough to move with the agent, and
-           building them is a research problem of its own. Agents are usually tested in a world
-           that waits for them. A real enterprise keeps moving. Its systems are coupled,
-           processes run between the agent's actions, and anything the agent does, even a read,
-           feeds into what happens next. So the future can't be precomputed, and each run has to
-           be simulated live, as a POMDP whose hidden state evolves under the world's own
-           dynamics as well as the agent's actions. With colleagues at IBM we generate such
-           worlds with LLMs, to evaluate agents before deployment and later to train them with
-           RL. The hard part is fidelity over a long, branching run, where an LLM stepping the
-           world turn by turn drifts. Our view is that fidelity is owed only on the surface an
-           agent touches, since two worlds that respond identically to everything an agent can do
-           are, to that agent, the same world. A world starts from a seed, and its dynamics are
-           learned from traces. The surface itself is still demanding. It has memory, because
-           whatever the agent has read or written must stay consistent, and it widens as agents
-           get stronger. Training raises the bar further, because a policy optimized with RL will
-           find and exploit any error in the world that happens to pay off, the way policies
-           learn to exploit bugs in a physics simulator.</p>
+        <div class="head"><span class="title">Simulated environments for evaluating and training agents</span><span class="pill">In Progress</span></div>
+        <p>Evaluating an
+           enterprise agent before deployment, or training it with RL, requires an environment
+           that reproduces the coupled services and data stores it will operate on. Their state
+           evolves between the agent's actions, and the agent's own actions condition what
+           follows, so each episode has to be simulated online. Our premise is that fidelity is
+           required only at the interface the agent acts through, since environments that respond
+           identically to every available action are indistinguishable to it. Starting from a
+           seed, we learn this interface from traces and realize each component behind it as a
+           real system, a stub or an LLM simulation, depending on
+           how much of it the agent can observe and how much other state depends on it. The
+           central difficulty is keeping this hybrid consistent over long episodes, especially
+           under RL, which will exploit any inconsistency that increases reward.</p>
       </div>
       <div class="item">
         <div class="head"><span class="title">Co-evolving the harness with the model</span><span class="pill">In Progress</span></div>
-        <p>A harness can move an agent's results as much as further training, yet it's usually
-           designed once, by hand, and frozen while the model trains. Each component encodes its
-           designer's guess about what the model needs, and a strategy built into a tool is one
-           the model never has to learn. Those guesses also don't transfer, since the same
-           component can help one model and hurt another. Our hypothesis is that scaffolding
-           works best as a temporary learning intervention. Between rounds of RL, a meta-
-           optimizer adds support where the model is falling short and withdraws it once the
-           capability has been internalized, so different models can end up under the same
-           minimal harness. Whatever is still there at the end marks what belongs outside the
-           weights, which we expect to be what is exact, what must be auditable and whatever
-           outgrows the context. Judgment under uncertainty should end up in the model.</p>
+        <p>An agent's harness consists of its tools, what they return, its memory and how its context
+           is managed. Harness changes can shift performance as much as further training, yet
+           harnesses are usually designed by hand and kept fixed during training. Each component
+           encodes an assumption about what the model needs, and the same component can help one
+           model and hurt another. Building a strategy into a tool also removes the need for the model to learn it. Our hypothesis is that scaffolding works best as a temporary aid, added where
+           a model falls short and removed once it has learned the capability. What remains at
+           the end would show which computation and state are better kept outside the weights.</p>
       </div>
     </div>
     </section>
@@ -296,11 +286,13 @@
         <div class="label">AISTATS 2026</div>
         <div class="feat-title"><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences: An End-to-End Framework for Table Understanding</a></div>
         <div class="authors"><span class="me">Deepak Vijaykeerthy</span>, Arvind Agarwal</div>
-        <p>Serializing a table into text teaches a model the serialization, down to the header
-           strings and the row order. If you rename a column or shuffle the rows, accuracy falls
-           apart, even though the table means exactly what it did before. We treat tables as a modality with their own encoder, fused end to end with an 8B decoder-only LLM, much as vision-language models treat images. The encoder is pretrained on 3 million tables by reconstructing ones we've deliberately corrupted, which teaches it to represent a table's structure and content under any surface form. The resulting model
-           understands a noisy table, finds the information a question needs, and reasons only from that evidence. Under row shuffling and anonymized headers we lose under 2 points.
-           The same architecture, fine-tuned directly on the same data, loses 6 to 22 points.</p>
+        <p>Serializing a table into text ties a model to surface details such as header wording
+           and row order. Renaming columns or shuffling rows doesn&#x27;t change a table's meaning,
+           yet it causes large accuracy drops. We give tables their own encoder, pretrained on 3
+           million tables by reconstructing deliberately corrupted ones, and fuse it end to end
+           with an 8B decoder-only LLM, in the way vision-language models handle images. Under
+           row shuffling and header anonymization the model loses under 2 points, while the same
+           architecture fine-tuned directly on the same data loses 6 to 22 points.</p>
         <div class="plinks"><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">Paper</a><a href="https://raw.githubusercontent.com/mlresearch/v300/main/assets/vijaykeerthy26a/vijaykeerthy26a.pdf">PDF</a></div>
       </div>
     </div>
@@ -312,9 +304,7 @@
         <div class="feat-title"><a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning</a></div>
         <div class="authors"><span class="me">Deepak Vijaykeerthy</span>, Rajmohan C, Arvind Agarwal, Avirup Saha, Sameep Mehta, et al.</div>
         <p>In an ETL pipeline, an error often surfaces well downstream of the stage that caused it. A zero divisor upstream becomes a NULL, passes untouched through a join, and only
-           violates a NOT NULL constraint at the final write, which is where the logs point. We
-           built a multi-agent system that reasons backwards from symptom to cause, as an
-           experienced data engineer would. One agent classifies the failure against a
+           violates a NOT NULL constraint at the final write, where the error is reported. We built a multi-agent system that reasons backwards from symptom to cause. One agent classifies the failure against a
            practitioner-derived taxonomy, a second traces it upstream through the flow's
            structure and transformation logic, and a third proposes ranked remediations for the
            engineer to choose from. It runs in IBM watsonx.data integration on production
@@ -325,7 +315,7 @@
 
     <ul class="pub-list">
       <li><span class="year">2026</span><div><div class="pt">DataBench: A Benchmark Dataset to Evaluate Agents for Data Pipeline Remediation</div>
-          <div class="pd">Ritwik Chaudhuri, <span class="me">Deepak Vijaykeerthy</span>, et al. Benchmarks for data agents mostly ask them to build pipelines from a clear specification. Much of production work is repair, and repair is harder, because the agent first has to infer what a broken pipeline was meant to do from its code and the log of a failed run. DataBench poses that problem directly. Each case injects one fault into a working pipeline or its data, and a fix counts only if the pipeline runs again and reproduces the correct output table. Across 86 such cases in nine fault categories, agents built on current state-of-the-art LLMs fix about 30%.</div>
+          <div class="pd">Ritwik Chaudhuri, <span class="me">Deepak Vijaykeerthy</span>, et al. Benchmarks for data agents mostly ask them to build pipelines from a clear specification. Much of production work is repair, which is harder because the agent first has to infer what a broken pipeline was meant to do from its code and the log of a failed run. DataBench poses that problem directly. Each case injects one fault into a working pipeline or its data, and a fix counts only if the pipeline runs again and reproduces the correct output table. Across 86 such cases in nine fault categories, agents built on current state-of-the-art LLMs fix about 30%.</div>
           <div class="pv">Under review at KDD 2027</div></div></li>
       <li><span class="year">2024</span><div><div class="pt"><a href="https://arxiv.org/abs/2409.04041">On Evaluation of Vision Datasets and Models using Human Competency Frameworks</a></div><div class="pv">DMLR Workshop, ICML 2024</div></div></li>
       <li><span class="year">2022</span><div><div class="pt"><a href="https://doi.org/10.1109/CVPR52688.2022.01004">A Framework for Learning Ante-hoc Explainable Models via Concepts</a></div><div class="pv">CVPR 2022</div></div></li>
@@ -341,7 +331,7 @@
     <h2>Experience</h2>
     <ul class="exp">
       <li><div><span class="org">IBM Research</span> <span class="what">&middot; Research Engineer &middot; 2016 to present</span>
-          <div class="exp-d">I've run continued pretraining, SFT and RL on models up to 30B. Earlier I built foundation models for tabular data and LLM agents for data engineering, one of which shipped in watsonx.data integration. Before that I worked on fairness verification, explainability, adversarial robustness, test generation for ML systems and AutoML.</div></div></li>
+          <div class="exp-d">I&#x27;ve run continued pretraining, SFT and RL on models up to 30B. Earlier I built foundation models for tabular data and LLM agents for data engineering, one of which shipped in watsonx.data integration. Before that I worked on fairness verification, explainability, adversarial robustness, test generation for ML systems and AutoML.</div></div></li>
       <li><div><span class="org">Microsoft Research India</span> <span class="what">&middot; Research Assistant &middot; 2013 to 2015</span>
           <div class="exp-d">I worked on synthesizing probabilistic programs from observation traces with MCMC (PLDI 2015).</div></div></li>
     </ul>
@@ -352,23 +342,22 @@
     <div class="panel">
       <div class="item">
         <div class="head"><a class="title" href="https://github.com/deepakvijaykee/rl-experiments"><code>rl-experiments</code></a></div>
-        <p>Post-training papers are usually organized by objective family. The choices that
-           decide how a run goes sit one level down, in which samples get gradient weight and at
+        <p>Post-training papers are usually organized by objective family. The choices that determine training behavior lie below that level, in which samples get gradient weight and at
            what granularity, how stale replayed data may be, and how far a proxy reward can be
            trusted. Methods from the same family can disagree on any of them. rl-experiments
            isolates these choices in PyTorch sandboxes small enough to read the gradient
            directly, so failures that take days to surface at scale show up on a single GPU.</p>
         <ul class="findings">
-          <li>Group-relative RL gets a direct signal only from prompts the policy solves some of the time. Prompts it never solves give no signal yet, and prompts it always solves are spent. Pretraining,
+          <li>Group-relative RL gets a direct signal only from prompts the policy solves some of the time. Prompts it never solves give no signal yet, and prompts it always solves give none either. Pretraining,
               SFT, curricula, larger groups and distillation all bring tasks into that useful range,
-              each by a different route, which is why they aren't interchangeable fixes for sparse
+              each by a different route, which is why they aren&#x27;t interchangeable fixes for sparse
               reward.</li>
           <li>In our sandbox, GRPO's entropy collapse traces to the standard-deviation
               normalization. When a group nearly agrees, dividing by its spread inflates a
               negligible reward gap into a full-sized step. The clip only bounds the size of that
-              step, so tightening it barely helps, and the variants that do slow the collapse, such as Dr. GRPO, change the normalization. Whether the same mechanism dominates in large-scale runs is the next thing to test.</li>
+              step, so tightening it has little effect, and the variants that do slow the collapse, such as Dr. GRPO, change the normalization. Whether the same mechanism dominates in large-scale runs is the next thing to test.</li>
           <li>Assigning credit at a finer grain redistributes the signal a reward already contains
-              and can't create signal where the reward is silent. That's a job for reward shaping.</li>
+              and can&#x27;t create signal where the reward is silent. Creating signal requires reward shaping.</li>
         </ul>
       </div>
       <div class="item">
