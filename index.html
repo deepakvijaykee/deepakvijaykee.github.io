@@ -67,6 +67,12 @@
 
   .container { max-width: 880px; margin: 0 auto; padding: 3rem 1.5rem 2rem; }
 
+  .news-bar { background: var(--feat-bg); border: 1px solid var(--feat-border); border-radius: 8px;
+              padding: 0.9rem 1.15rem; margin-bottom: 2.25rem; font-size: 0.88rem; line-height: 1.65; }
+  .news-bar .badge { display: inline-block; background: var(--accent); color: var(--bg); font-size: 0.68rem;
+                     font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 3px; margin-right: 0.5rem;
+                     text-transform: uppercase; letter-spacing: 0.04em; vertical-align: 1px; }
+  .news-bar a { font-weight: 600; }
   /* Hero (from the current page) */
   .hero { display: flex; gap: 2.25rem; align-items: flex-start; }
   .avatar { width: 150px; height: 150px; border-radius: 50%; flex-shrink: 0; object-fit: cover;
@@ -76,7 +82,6 @@
   .focus { font-size: 0.9rem; color: var(--accent); font-style: italic; font-weight: 500; margin: 0.1rem 0 0.9rem; }
   .bio { font-size: 0.95rem; line-height: 1.75; }
   .bio + .bio { margin-top: 0.5rem; }
-  .bio.recent { font-size: 0.88rem; color: var(--muted); }
   .social { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
   .social a { padding: 0.3rem 0.8rem; border: 1px solid var(--border); border-radius: 6px;
               font-size: 0.8rem; font-weight: 500; color: var(--muted); }
@@ -182,6 +187,13 @@
 
 <div class="container">
 
+  <div class="news-bar">
+    <span class="badge">News</span>
+    <a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences: An End-to-End Framework for Table Understanding</a> at AISTATS 2026
+    &middot; <a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning</a> at ACM SIGMOD 2026 (Demo Track), now deployed in IBM watsonx.data integration
+    &middot; DataBench under review at KDD 2027
+  </div>
+
   <div class="hero" id="about">
     <img class="avatar" src="images/photo.jpeg" alt="Deepak Vijaykeerthy">
     <div>
@@ -192,7 +204,6 @@
          the simulated worlds those agents are evaluated and trained in. I was a Research
          Assistant at Microsoft Research India from 2013 to 2015 and have been at IBM Research
          since 2016, working across the line between research and shipped systems. My work has appeared at AISTATS, SIGMOD, CVPR, UAI, AAAI and PLDI.</p>
-      <p class="bio recent">Recent: <a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences</a> (AISTATS 2026, a table encoder fused with an 8B LLM) &middot; <a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Multi-agent root-cause diagnosis for ETL pipelines</a> (SIGMOD 2026, deployed in IBM watsonx.data integration)</p>
       <p class="bio">Email is the best way to reach me.</p>
       <div class="social">
         <a href="mailto:vdeepak713@outlook.com">Email</a>
