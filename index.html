@@ -220,6 +220,22 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
     line-height: 1.72;
   }
   .bio + .bio { margin-top: 0.55rem; }
+  .email-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    border-radius: 5px;
+    padding: 0.06rem 0.48rem;
+    font: inherit;
+    font-size: 0.86em;
+    font-weight: 500;
+    cursor: pointer;
+    vertical-align: baseline;
+  }
+  .email-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
   .social {
     display: flex;
     flex-wrap: wrap;
@@ -555,7 +571,7 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
       <div class="role">Research Engineer &middot; IBM</div>
       <div class="focus">LLM Post-Training &middot; Agentic RL &middot; Environment Simulation</div>
       <p class="bio">I work on RL post-training for language models and agents, and on stateful simulated environments and harnesses for training and evaluating them. I was a Research Assistant at Microsoft Research India from 2013 to 2015 and have been at IBM Research since 2016. My work has appeared at AISTATS, SIGMOD, CVPR, UAI, AAAI and PLDI.</p>
-      <p class="bio">Happy to chat about RL post-training, agentic environments or related work. Email is the best way to reach me: <a href="mailto:vdeepak713@outlook.com">vdeepak713@outlook.com</a>.</p>
+      <p class="bio">Happy to chat about RL post-training, agentic environments or related work. Email is the best way to reach me: <span id="email-slot"><button class="email-btn" type="button" onclick="revealEmail()">Show email</button></span>.</p>
       <div class="social">
         <a href="https://github.com/deepakvijaykee">GitHub</a>
         <a href="https://scholar.google.com/citations?user=pZRgP9EAAAAJ&hl=en">Google Scholar</a>
@@ -568,7 +584,7 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
   <div class="recent" aria-label="Recent updates">
     <div class="recent-label">Recent</div>
     <ul>
-      <li><span class="tag">AISTATS 2026</span><span><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences</a> (dedicated table encoder fused with an 8B LLM)</span></li>
+      <li><span class="tag">AISTATS 2026</span><span><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences</a> (treating tables as a modality for LLMs)</span></li>
       <li><span class="tag">SIGMOD 2026</span><span><a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Root-Cause Diagnosis for ETL Pipelines</a> (Demo Track), deployed in IBM watsonx.data integration</span></li>
       <li><span class="tag">Under review</span><span>DataBench, an execution-verified pipeline remediation benchmark (KDD 2027)</span></li>
     </ul>
@@ -646,18 +662,18 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
         <div class="label">AISTATS 2026</div>
         <div class="feat-title"><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">From Cells to Sentences: An End-to-End Framework for Table Understanding</a></div>
         <div class="authors"><span class="me">Deepak Vijaykeerthy</span>, Arvind Agarwal</div>
-        <p>Serializing a table into text ties a model to surface details such as header wording and row order. Renaming columns or shuffling rows doesn't change a table's meaning, yet it causes large accuracy drops. We give tables their own encoder, pretrained on 3 million tables by reconstructing deliberately corrupted ones, and fuse it end to end with an 8B decoder-only LLM, in the way vision-language models handle images. Compressing each table roughly 10&times; into fixed slots also makes inference about 3&times; faster on large tables. Under row shuffling and header anonymization the model loses under 2 points, while the same architecture fine-tuned directly on the same data loses 6 to 22 points.</p>
+        <p>Flattening tables into text loses their row-column structure and makes LLMs brittle to real-world noise like renamed headers, missing cells or shuffled rows and columns. Instead, we treat tables as their own modality and split understanding into three stages: pretrain structure-aware encoders on corrupted tables so representations hold up under schema noise, compress the table into fixed slots grounded in supporting text, and fuse those slots into an LLM for reasoning without external SQL tools. Across eight table benchmarks, this beats prior tool-free methods, runs faster on large tables, and stays stable under header corruption and row/column shuffling where direct fine-tuning drops sharply.</p>
         <div class="plinks"><a href="https://proceedings.mlr.press/v300/vijaykeerthy26a.html">Paper</a><a href="https://raw.githubusercontent.com/mlresearch/v300/main/assets/vijaykeerthy26a/vijaykeerthy26a.pdf">PDF</a></div>
       </div>
     </div>
 
     <div class="featured">
-      <a class="fig" href="https://dl.acm.org/doi/10.1145/3788853.3801613"><img src="images/sigmod-fig.png" alt="Three-agent ETL diagnosis architecture" loading="lazy"></a>
+      <a class="fig" href="https://dl.acm.org/doi/10.1145/3788853.3801613"><img src="images/sigmod-fig.png" alt="Multi-agent ETL diagnosis architecture" loading="lazy"></a>
       <div>
         <div class="label">ACM SIGMOD 2026 &middot; Demo Track &middot; Deployed in production</div>
         <div class="feat-title"><a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Root-Cause Diagnosis with Remediation Recommendations for ETL Pipelines via LLM-Based Reasoning</a></div>
         <div class="authors"><span class="me">Deepak Vijaykeerthy*</span>, Rajmohan C*, Arvind Agarwal, Avirup Saha, Sameep Mehta, et al. (*equal contribution)</div>
-        <p>In an ETL pipeline, an error often surfaces well downstream of the stage that caused it. A zero divisor upstream becomes a NULL, passes untouched through a join, and only violates a NOT NULL constraint at the final write, where the error is reported. We built a multi-agent system that reasons backwards from symptom to cause. One agent classifies the failure against a practitioner-derived taxonomy, a second traces it upstream through the flow's structure and transformation logic, and a third proposes ranked remediations for the engineer to choose from. It runs in IBM watsonx.data integration on production DataStage pipelines.</p>
+        <p>Existing observability tools expose logs, schemas and pipeline graphs in isolation, so errors that propagate across stages (an upstream divide-by-zero silently becoming a NULL and tripping a NOT NULL constraint at the final sink) often get patched at the symptom. We built a multi-agent system modeled on how data engineers debug in practice, separating where an error surfaces from where it originated. It first classifies the failure against a practitioner-derived taxonomy to set the diagnostic path (tracing column lineage and transformation logic for data issues, or credentials and query semantics for connection and SQL failures) and reconstructs the causal chain upstream through the flow. From that root cause, it proposes ranked fixes grounded in pipeline artifacts so engineers can weigh operational trade-offs instead of applying blind auto-patches. It runs in production in IBM watsonx.data integration on DataStage pipelines.</p>
         <div class="plinks"><a href="https://dl.acm.org/doi/10.1145/3788853.3801613">Paper</a><a href="https://youtu.be/6d6u8nhlyqs">Video</a></div>
       </div>
     </div>
@@ -668,7 +684,7 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
         <div>
           <div class="pt">DataBench: A Benchmark Dataset to Evaluate Agents for Data Pipeline Remediation</div>
           <div class="pa">Ritwik Chaudhuri, <span class="me">Deepak Vijaykeerthy</span>, Avirup Saha, Arvind Agarwal, Kushal Mukherjee, Sameep Mehta</div>
-          <div class="pd">Most benchmarks for data agents ask them to build a pipeline from a clear spec, but much of production work is repair. DataBench injects a single fault into a working Airflow or PostgreSQL pipeline (or its input data), and a fix counts only if the pipeline runs again and reproduces the exact output table. Across 86 cases in nine fault categories, current LLM agents fix about 30%.</div>
+          <div class="pd">Most data-agent benchmarks test building pipelines from a clean spec, while production work is mostly repair: inferring what a broken pipeline was meant to do from its code, failed logs and database state without silently corrupting data. DataBench tests this across 86 fault-injected Airflow and PostgreSQL cases in nine categories, where a fix counts only if the repaired pipeline executes and matches the exact ground-truth output table. Current LLM agents solve about 30%, handling surface connection or schema mismatches much better than data-semantic faults like missing values, format errors and constraint violations, where agents often make the pipeline run again while silently producing the wrong table.</div>
           <div class="pv">Under review at KDD 2027</div>
         </div>
       </li>
@@ -733,7 +749,7 @@ try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.docu
       </li>
       <li>
         <div><span class="org">Microsoft Research India</span> <span class="what">&middot; Research Assistant &middot; 2013 to 2015</span></div>
-        <div class="exp-d">I worked on probabilistic program synthesis using Metropolis-Hastings with symbolic Mixture-of-Gaussians likelihoods (~1000&times; faster than Monte Carlo, PLDI 2015) and on causal debugging of ML classifiers (arXiv 2016).</div>
+        <div class="exp-d">I worked on probabilistic program synthesis using Metropolis-Hastings with symbolic Mixture-of-Gaussians likelihoods (PLDI 2015) and on causal debugging of ML classifiers (arXiv 2016).</div>
       </li>
     </ul>
   </section>
@@ -756,6 +772,16 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme',next);
   try{localStorage.setItem('theme',next);}catch(e){}
   syncThemeButton();
+}
+function revealEmail(){
+  var slot=document.getElementById('email-slot');
+  if(!slot)return;
+  var codes=[118,100,101,101,112,97,107,55,49,51,64,111,117,116,108,111,111,107,46,99,111,109];
+  var addr=String.fromCharCode.apply(null,codes);
+  var a=document.createElement('a');
+  a.href='mai'+'lto:'+addr;
+  a.textContent=addr;
+  slot.replaceChildren(a);
 }
 syncThemeButton();
 try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',syncThemeButton);}catch(e){}
